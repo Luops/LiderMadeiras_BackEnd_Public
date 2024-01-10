@@ -14,9 +14,9 @@ const multerConfig = require("../../config/multer");
 const aws = require("aws-sdk");
 const s3 = new aws.S3();
 aws.config.update({
-  accessKeyId: "AKIAZXQBKBVEP24NDOU7",
-  secretAccessKey: "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",
-  region: "sa-east-1", // Substitua pela sua região
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY_ID,
+  region: process.env.AWS_DEFAULT_REGION, // Substitua pela sua região
 });
 
 // Node

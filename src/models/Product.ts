@@ -1,5 +1,7 @@
 import { model, Schema } from "mongoose";
 
+const URL = process.env.APP_URL
+
 // Dados que compoem o produto
 const productSchema = new Schema(
   {
@@ -27,7 +29,7 @@ const productSchema = new Schema(
 
 productSchema.pre("save", function () {
   if (!this.url) {
-    this.url = `https://lidermadeiras-api.onrender.com/files/${this.key}`; //
+    this.url = `${URL}/files/${this.key}`; //
   }
 });
 

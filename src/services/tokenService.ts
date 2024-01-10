@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import Logger from "../../config/logger";
 
-const secret = "fabrios12361236" as string;
+const secret = process.env.TOKEN_SECRET as string;
 
 const generateToken = (uuid: string) => {
   return jwt.sign({ id: uuid }, secret, {

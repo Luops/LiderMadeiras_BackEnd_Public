@@ -1,6 +1,6 @@
-const dbUser = "fabriciorioslopes"; // Coletar usuário do DB
-const dbPass = "fabrios12361236"; // Coletar senha do DB
-const dbName = "dbLiderMadeiras"; // Coletar nome do DB
+const dbUser = process.env.DB_USER; // Coletar usuário do DB
+const dbPass = process.env.DB_PASS; // Coletar senha do DB
+const dbName = process.env.DB_NAME; // Coletar nome do DB
 
 export default {
   port: 4000,

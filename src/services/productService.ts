@@ -15,12 +15,10 @@ const multerConfig = require("../../config/multer");
 const aws = require("aws-sdk");
 const s3 = new aws.S3();
 aws.config.update({
-  accessKeyId: "AKIAZXQBKBVEP24NDOU7",
-  secretAccessKey: "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",
-  region: "sa-east-1", // Substitua pela sua região
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY_ID,
+  region: process.env.AWS_DEFAULT_REGION, // Substitua pela sua região
 });
-
-const STORAGE_TYPE = "s3";
 
 // Node
 const fs = require("fs");
@@ -52,10 +50,10 @@ export async function deleteProductById(req: Request, res: Response) {
     }
     /*
     // Execute o código de exclusão antes de chamar deleteOne, caso seja no S3
-    if (STORAGE_TYPE === "s3") {
+    if (STORAGE_TYPE === process.env.STORAGE_TYPE) {
       await s3
         .deleteObject({
-          Bucket: "uploadimageslider",
+          Bucket: process.env.AWS_BUCKET_NAME,
           Key: product.key, // Use a chave do produto
         })
         .promise();

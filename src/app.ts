@@ -10,7 +10,7 @@ const app = express();
 
 // Habilita o CORS para todas as solicitações
 const corsOptions = {
-  origin: "https://lidermadeiras-frontend.vercel.app", // Substitua pela origem correta do seu frontend
+  origin: process.env.APP_URL_FRONT, // Substitua pela origem correta do seu frontend
   credentials: true, // Permite o envio de cookies e credenciais
   optionsSuccessStatus: 200,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],

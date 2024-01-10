@@ -8,9 +8,9 @@ const multerS3 = require("multer-s3");
 const { S3Client } = require("@aws-sdk/client-s3");
 const aws = require("aws-sdk");
 
-const awsKey = "AKIAZXQBKBVEP24NDOU7";
-const awsKeySecret = "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";
-const awsRegion = "sa-east-1";
+const awsKey = process.env.AWS_ACCESS_KEY_ID;
+const awsKeySecret = process.env.AWS_SECRET_ACCESS_KEY_ID;
+const awsRegion = process.env.AWS_DEFAULT_REGION;
 
 const s3 = new S3Client({
   region: awsRegion,
@@ -37,7 +37,7 @@ const storageTypes = {
   }),
   s3: multerS3({
     s3: s3,
-    bucket: "uploadimageslider",
+    bucket: process.env.AWS_BUCKET_NAME,
     contentType: multerS3.AUTO_CONTENT_TYPE,
     acl: "public-read",
     key: (req, file, cb) => {
@@ -55,7 +55,7 @@ const storageTypes = {
 
 module.exports = {
   dest: path.resolve(__dirname, "..", "tmp", "uploads"), // Enviar para onde?
-  storage: storageTypes["s3"],
+  storage: storageTypes[process.env.STORAGE_TYPE],
   limits: {
     fileSize: 2 * 32 * 1024 * 1024,
   },
